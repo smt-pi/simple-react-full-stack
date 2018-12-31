@@ -3,19 +3,19 @@ import './app.css';
 import ReactImage from './react.png';
 
 export default class App extends Component {
-  state = { username: null };
+  state = { text: null };
 
   componentDidMount() {
-    fetch('/api/getUsername')
+    fetch('/test')
       .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+      .then(data => this.setState(data));
   }
 
   render() {
-    const { username } = this.state;
+    const { text } = this.state;
     return (
       <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
+        {text ? <h1>Server says: {text}</h1> : <h1>Loading.. please wait!</h1>}
         <img src={ReactImage} alt="react" />
       </div>
     );
